@@ -7,27 +7,47 @@
 import React, { Component } from 'react';
 import {
   AppRegistry,
+  Platform,
   StyleSheet,
+  Navigator,
   Text,
   View
 } from 'react-native';
 
+import MainScreen from './MainScreen';
+
 class componetsDemo extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
-    );
-  }
+    constructor(props) {
+        super(props);   //这一句不能省略，照抄即可
+    }
+    componentDidMount() {
+
+    }
+
+    render() {
+        return (
+            <Navigator
+                initialRoute={{name: 'main', index: 0, id:'main'}}
+                renderScene={(route, navigator) =>{
+                                console.log('route.id is: ' + route.id);
+                                return (<MainScreen nav={navigator}/>);
+                            }
+                }
+            />
+        )
+    }
+
+    static _renderPage(route, nav) {
+        switch (route.id) {
+            case 'main':
+                return (<MainScreen nav={nav}/>);
+                break;
+            case 'webview':
+                //return (<JdWebView url={route.url}/>);
+                break;
+        }
+    }
+
 }
 
 const styles = StyleSheet.create({
