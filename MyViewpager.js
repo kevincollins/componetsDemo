@@ -40,16 +40,20 @@ export default class MyViewpager extends Component {
     }
 
     _renderPageView(){
-        for (let i = 0; i < BANNER_IMGS.length; i++) {
-            bannerViews.push(
-                 <View key={i}  collapsable={false}>
+
+        let bannersView = BANNER_IMGS.map((banner, index) => {
+            console.log('index:'+index);
+
+            return(
+                <View key={index} collapsable={false}>
                     <Image
                         style={styles.image}
-                        source={BANNER_IMGS[i]}
+                        source={banner}
                     />
                 </View>
             );
-        }
+        });
+        return bannersView;
     }
 
     render() {
@@ -60,8 +64,9 @@ export default class MyViewpager extends Component {
                 initialPage={0}
                 autoPlay={true}
                 pageCount={pageCount}
+                rendViewPage={this._renderPageView.bind(this)}
             >
-                {bannerViews}
+
             </ViewPager>
         );
     }

@@ -73,7 +73,7 @@ export default class GpcViewPager extends Component {
                     onPageSelected={this._onPageSelectedOnAndroid.bind(this)}
 
                 >
-
+                    {this.props.rendViewPage()}
                 </ViewPagerAndroid>
 
                 {this._renderDotsView()}
@@ -81,10 +81,6 @@ export default class GpcViewPager extends Component {
             </View>
 
         );
-    }
-
-    _renderView() {
-        if (this.props.renderPage) this.props.renderPage();
     }
 
     _renderDotsView() {
@@ -115,11 +111,8 @@ export default class GpcViewPager extends Component {
     }
 
     _onPageSelectedOnAndroid(e) {
-        this._onPageSelected(e.nativeEvent);
-    }
-
-    _onPageSelected(e) {
-        this.setState({selectedIndex: e.position});
+        let param = e.nativeEvent;
+        this.setState({selectedIndex: param.position});
     }
 
     _setPage(index) {
@@ -127,7 +120,6 @@ export default class GpcViewPager extends Component {
         this.refs[VIEWPAGER_REF].setPage(index);
         //if (this.props.onPageSelected) this.props.onPageSelected({position: index});
     }
-
 }
 
 var styles = StyleSheet.create({
