@@ -25,9 +25,7 @@ const HOME_FOCUS = require('./images/tabs/home_focus.png');
 const CATEGORY = 'category';
 const CATEGORY_NORMAL = require('./images/tabs/category_normal.png');
 const CATEGORY_FOCUS = require('./images/tabs/category_focus.png');
-const FAXIAN = 'faxian';
-const FAXIAN_NORMAL = require('./images/tabs/faxian_normal.png');
-const FAXIAN_FOCUS = require('./images/tabs/faxian_focus.png');
+
 const CART = 'cart';
 const CART_NORMAL = require('./images/tabs/cart_normal.png');
 const CART_FOCUS = require('./images/tabs/cart_focus.png');
@@ -43,14 +41,15 @@ export default class MainScreen extends Component {
     }
     state = {
         selectedTab: HOME
-    };
+    }
 
-    _renderTabItem(img, selectedImg, tag, childView) {
+    _renderTabItem(index, icon, iconSelected, tag, childView) {
         return (
             <TabNavigator.Item
+                key={tag}
                 selected={this.state.selectedTab === tag}
-                renderIcon={() => <Image style={styles.tabIcon} source={img}/>}
-                renderSelectedIcon={() => <Image style={styles.tabIcon} source={selectedImg}/>}
+                renderIcon={() => <Image style={styles.tabIcon} source={icon}/>}
+                renderSelectedIcon={() => <Image style={styles.tabIcon} source={iconSelected}/>}
                 onPress={() => this.setState({ selectedTab: tag })}>
                 {childView}
             </TabNavigator.Item>
@@ -65,16 +64,58 @@ export default class MainScreen extends Component {
         )
     }
 
+    renderTabItem(){
+        let tabs = [
+            {
+                tag: HOME,
+                icon: HOME_NORMAL,
+                iconSelected: HOME_FOCUS
+            },
+            {
+                tag: CATEGORY,
+                icon: CATEGORY_NORMAL,
+                iconSelected: CATEGORY_FOCUS
+            },
+            {
+                tag: CART,
+                icon: CART_NORMAL,
+                iconSelected: CART_FOCUS
+            },
+            {
+                tag: PERSONAL,
+                icon: PERSONAL_NORMAL,
+                iconSelected: PERSONAL_FOCUS
+            },
+        ];
+
+
+        let tabsView = tabs.map((tab, index) => {
+            if(index==0){
+                return (
+                    this._renderTabItem(index,tab.icon,tab.iconSelected,tab.tag,<HomePage nav={this.props.nav}/> )
+                );
+            }
+            return (
+
+                this._renderTabItem(index,tab.icon,tab.iconSelected,tab.tag,MainScreen._createChildView(tab.tag))
+            );
+        });
+        return tabsView;
+    }
+
     render() {
         return (
             <View style={{flex: 1}}>
                 <Header />
                 <TabNavigator hidesTabTouch={true} tabBarStyle={styles.tab}>
+                    {/**
                     {this._renderTabItem(HOME_NORMAL, HOME_FOCUS, HOME, <HomePage nav={this.props.nav}/>)}
                     {this._renderTabItem(CATEGORY_NORMAL, CATEGORY_FOCUS, CATEGORY, MainScreen._createChildView(CATEGORY))}
-                    {this._renderTabItem(FAXIAN_NORMAL, FAXIAN_FOCUS, FAXIAN, MainScreen._createChildView(FAXIAN))}
                     {this._renderTabItem(CART_NORMAL, CART_FOCUS, CART, MainScreen._createChildView(CART))}
                     {this._renderTabItem(PERSONAL_NORMAL, PERSONAL_FOCUS, PERSONAL, MainScreen._createChildView(PERSONAL))}
+                    */}
+
+                    {this.renderTabItem()}
                 </TabNavigator>
             </View >
         );

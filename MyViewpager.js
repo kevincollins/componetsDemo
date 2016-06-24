@@ -27,7 +27,7 @@ const pageCount=BANNER_IMGS.length;
 export default class MyViewpager extends Component {
 
     componentWillMount() {
-        for (let i = 0; i < BANNER_IMGS.length; i++) {
+        /*for (let i = 0; i < BANNER_IMGS.length; i++) {
             bannerViews.push(
                 <View key={i}  collapsable={false}>
                     <Image
@@ -36,13 +36,12 @@ export default class MyViewpager extends Component {
                     />
                 </View>
             );
-        }
+        }*/
     }
 
     _renderPageView(){
 
         let bannersView = BANNER_IMGS.map((banner, index) => {
-            console.log('index:'+index);
 
             return(
                 <View key={index} collapsable={false}>

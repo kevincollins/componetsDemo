@@ -87,7 +87,7 @@ export default class GpcViewPager extends Component {
 
         let dotsView = [];
         for (let i = 0; i < pageCount; i++) {
-            let isSelect = i === this.state.selectedIndex;
+            let isSelect = i == this.state.selectedIndex;
             dotsView.push(
                 <View
                     style={[styles.dot, isSelect ? styles.selectDot : null]}

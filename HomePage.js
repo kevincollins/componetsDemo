@@ -34,10 +34,15 @@ export default class HomePage extends Component {
         this.state = {
             displayWord: wordsArr[0],
         };
+
     }
 
     componentDidMount() {
 
+    }
+
+    _onMenuClick(title, tag) {
+        Alert.alert('提示', '你点击了:' + title + " Tag:" + tag);
     }
 
     render() {
