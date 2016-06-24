@@ -11,7 +11,7 @@ import {
     StyleSheet
 } from 'react-native';
 
-import ViewPager from './components/viewpager/GpcViewPager.js';
+import ViewPager from './components/viewpager/indicator/PageViewIndicator.js';
 
 const BANNER_IMGS = [
     require('./images/banner/1.jpg'),
