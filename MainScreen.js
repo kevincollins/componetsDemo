@@ -39,8 +39,11 @@ export default class MainScreen extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {selectedTab: HOME}
+        //this.state = {selectedTab: HOME}
     }
+    state = {
+        selectedTab: HOME
+    };
 
     _renderTabItem(img, selectedImg, tag, childView) {
         return (

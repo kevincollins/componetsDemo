@@ -15,6 +15,7 @@ import {
 } from 'react-native';
 
 import MainScreen from './MainScreen';
+import MainScreen2 from './MainScreen2';
 
 class componetsDemo extends Component {
     constructor(props) {

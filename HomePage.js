@@ -20,6 +20,7 @@ import {
 
 
 import MyViewpager from './MyViewpager';
+import MenuButton from './components/MenuButton';
 
 
 const len = 160;
@@ -32,47 +33,32 @@ export default class HomePage extends Component {
         super(props);
         this.state = {
             displayWord: wordsArr[0],
-            fadeInOpacity: new Animated.Value(0), // 初始值
-            rotation: new Animated.Value(0),
-            fontSize: new Animated.Value(0),
         };
     }
 
     componentDidMount() {
-        var timing = Animated.timing;
-        Animated.parallel(['fadeInOpacity', 'rotation', 'fontSize'].map(property => {
-            return timing(this.state[property], {
-                toValue: 1,
-                duration: 1000,
-                easing: Easing.linear
-            });
-        })).start();
+
     }
 
     render() {
         return (
             <View>
                 <MyViewpager/>
+                <View style={styles.menuView}>
+                    <MenuButton renderIcon={require('./images/home_icons/wdgz.png')}
+                                showText={'我的关注'} tag={'wdgz'}
+                                onClick={this._onMenuClick}/>
+                    <MenuButton renderIcon={require('./images/home_icons/wlcx.png')}
+                                showText={'物流查询'} tag={'wlcx'}
+                                onClick={this._onMenuClick}/>
+                    <MenuButton renderIcon={require('./images/home_icons/cz.png')}
+                                showText={'充值'} tag={'cz'}
+                                onClick={this._onMenuClick}/>
+                    <MenuButton renderIcon={require('./images/home_icons/dyp.png')}
+                                showText={'电影票'} tag={'dyp'}
+                                onClick={this._onMenuClick}/>
+                </View>
 
-                <Animated.View
-                    style={[styles.demo, {
-                        opacity: this.state.fadeInOpacity,
-                        transform: [{
-                            rotateZ: this.state.rotation.interpolate({
-                                inputRange: [0,1],
-                                outputRange: ['0deg', '360deg']
-                            })
-                        }]
-                    }
-                ]}
-                >
-                    <Animated.Text style={{
-                fontSize: this.state.fontSize.interpolate({
-                    inputRange: [0,1],
-                    outputRange: [12,26]
-                })
-            }}>{'hello,' + this.state.displayWord}</Animated.Text>
-                </Animated.View>
             </View>
 
         );
@@ -84,6 +70,10 @@ const styles = StyleSheet.create({
         flex: 1,
         height: 130,
         resizeMode: 'stretch'
+    },
+    menuView: {
+        flexDirection: 'row',
+        marginTop: 10
     },
     demo: {
         flex: 1,
