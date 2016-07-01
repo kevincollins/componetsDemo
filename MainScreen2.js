@@ -14,13 +14,9 @@ import {
 } from 'react-native';
 
 
-import Header from './Header';
 
-import HomePage from './HomePage';
-import TabNavigator from 'react-native-tab-navigator';
-
-import GpcTabNavigator from './components/GpcTabNavigator';
-
+import IndicatorViewPager from './components/viewpager/IndicatorViewPager';
+import PagerTabIndicator from './components/viewpager/indicator/PagerTabIndicator';
 
 
 export default class MainScreen2 extends Component {
@@ -31,6 +27,10 @@ export default class MainScreen2 extends Component {
 
     state = {
         //selectedTab: HOME
+    };
+
+    static propTypes = {
+        ...View.propTypes
     };
 
     _renderTabIndicator() {
@@ -52,7 +52,7 @@ export default class MainScreen2 extends Component {
             }
         ];
         return (
-            <GpcTabNavigator initialPage={2}
+            <PagerTabIndicator
                 tabs={tabs}
             />
         );
@@ -60,13 +60,23 @@ export default class MainScreen2 extends Component {
 
     render() {
         return (
-            <View style={{flex: 1}}>
-                <Header />
-
-                {this._renderTabIndicator()}
-            </View >
+            <IndicatorViewPager
+                style={{flex:1}}
+                indicator={this._renderTabIndicator()}
+            >
+                <View style={{backgroundColor:'#1AA094'}}>
+                    <Text>Home Page</Text>
+                </View>
+                <View style={{backgroundColor:'#1AA094'}}>
+                    <Text>Message Page</Text>
+                </View>
+                <View style={{backgroundColor:'#1AA094'}}>
+                    <Text>Profile Page</Text>
+                </View>
+            </IndicatorViewPager>
         );
     }
+
 }
 
 const styles = StyleSheet.create({
