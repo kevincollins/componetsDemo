@@ -22,6 +22,7 @@ import {
 import MyViewpager from './MyViewpager';
 import MenuButton from './components/MenuButton';
 
+import ImageSelect from './ImageSelect';
 
 const len = 160;
 
@@ -43,6 +44,10 @@ export default class HomePage extends Component {
 
     _onMenuClick(title, tag) {
         Alert.alert('提示', '你点击了:' + title + " Tag:" + tag);
+    }
+
+    _onPressButton(){
+
     }
 
     render() {

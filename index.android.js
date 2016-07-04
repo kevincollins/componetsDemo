@@ -31,7 +31,7 @@ class componetsDemo extends Component {
                 initialRoute={{name: 'main', index: 0, id:'main'}}
                 renderScene={(route, navigator) =>{
                                 console.log('route.id is: ' + route.id);
-                                return (<MainScreen2 nav={navigator}/>);
+                                return (<MainScreen nav={navigator}/>);
                             }
                 }
             />
