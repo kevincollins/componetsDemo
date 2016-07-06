@@ -1,4 +1,7 @@
-
+/**
+ *  调用  PageViewIndicator 来实现轮播效果
+ *
+ */
 
 import React, { Component,PropTypes } from 'react';
 
@@ -20,7 +23,7 @@ const BANNER_IMGS = [
     require('./images/banner/4.jpg')
 ];
 
-var bannerViews = [];
+var bannersView = [];
 
 const pageCount=BANNER_IMGS.length;
 
@@ -28,7 +31,7 @@ export default class MyViewpager extends Component {
 
     componentWillMount() {
         /*for (let i = 0; i < BANNER_IMGS.length; i++) {
-            bannerViews.push(
+            bannersView.push(
                 <View key={i}  collapsable={false}>
                     <Image
                         style={styles.image}
@@ -55,6 +58,7 @@ export default class MyViewpager extends Component {
         return bannersView;
     }
 
+
     render() {
 
         return (
@@ -62,10 +66,10 @@ export default class MyViewpager extends Component {
                 style={{height:200}}
                 initialPage={0}
                 autoPlay={true}
+                hasDots={true}
                 pageCount={pageCount}
-                rendViewPage={this._renderPageView.bind(this)}
+                renderPageView={this._renderPageView.bind(this)}
             >
-
             </ViewPager>
         );
     }
