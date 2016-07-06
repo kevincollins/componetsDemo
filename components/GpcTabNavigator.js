@@ -1,5 +1,6 @@
 /**
  * Created by 58 on 2016/6/16.
+ * 目前还是雏形
  */
 
 'use strict';
@@ -22,7 +23,6 @@ export default class GpcTabNavigator extends Component {
 
     constructor(props) {
         super(props);
-
     }
 
     state = {
@@ -67,7 +67,6 @@ export default class GpcTabNavigator extends Component {
         );
     }
 }
-
 
 
 const styles = StyleSheet.create({
