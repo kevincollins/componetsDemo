@@ -1,5 +1,5 @@
 /**
- * 使用 viewPager PagerTabIndicator 实现的 tab
+ * 使用 GpcTabNavigator 实现的 tab
  * 
  */
 
@@ -17,9 +17,7 @@ import {
 } from 'react-native';
 
 
-
-import IndicatorViewPager from './components/viewpager/IndicatorViewPager';
-import PagerTabIndicator from './components/viewpager/indicator/PagerTabIndicator';
+import GpcTabNavigator from './components/GpcTabNavigator';
 
 
 export default class MainScreen2 extends Component {
@@ -36,7 +34,7 @@ export default class MainScreen2 extends Component {
         ...View.propTypes
     };
 
-    _renderTabIndicator() {
+    render() {
         let tabs = [
             {
                 text: 'Home',
@@ -54,29 +52,11 @@ export default class MainScreen2 extends Component {
                 selectedIconSource: require('./images/view_pager/ic_tab_my_click@2x.png')
             }
         ];
+
         return (
-            <PagerTabIndicator
+            <GpcTabNavigator
                 tabs={tabs}
             />
-        );
-    }
-
-    render() {
-        return (
-            <IndicatorViewPager
-                style={{flex:1}}
-                indicator={this._renderTabIndicator()}
-            >
-                <View style={{backgroundColor:'#1AA094'}}>
-                    <Text>Home Page</Text>
-                </View>
-                <View style={{backgroundColor:'#1AA094'}}>
-                    <Text>Message Page</Text>
-                </View>
-                <View style={{backgroundColor:'#1AA094'}}>
-                    <Text>Profile Page</Text>
-                </View>
-            </IndicatorViewPager>
         );
     }
 

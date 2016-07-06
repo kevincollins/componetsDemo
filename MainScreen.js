@@ -18,6 +18,7 @@ import Header from './Header';
 
 import ImageSelect from './ImageSelect';
 import HomePage from './HomePage';
+import InnerPageTitle from './InnerPageTitle';
 
 import TabNavigator from 'react-native-tab-navigator';
 
@@ -103,8 +104,12 @@ export default class MainScreen extends Component {
                     this._renderTabItem(index,tab.icon,tab.iconSelected,tab.tag,<ImageSelect/> )
                 );
             }
+            if(index==2){
+                return (
+                    this._renderTabItem(index,tab.icon,tab.iconSelected,tab.tag,<InnerPageTitle/> )
+                );
+            }
             return (
-
                 this._renderTabItem(index,tab.icon,tab.iconSelected,tab.tag,MainScreen._createChildView(tab.tag))
             );
         });

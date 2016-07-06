@@ -16,6 +16,7 @@ import {
 
 import MainScreen from './MainScreen';
 import MainScreen2 from './MainScreen2';
+import MainScreen3 from './MainScreen3';
 
 class componetsDemo extends Component {
     constructor(props) {
