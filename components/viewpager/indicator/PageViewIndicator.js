@@ -1,5 +1,8 @@
 /**
  * Created by 58 on 2016/6/24.
+ *
+ * 改造的 viewPager 组件
+ * 
  */
 
 'use strict';
@@ -21,23 +24,19 @@ const VIEWPAGER_REF = 'viewPager';
 const DEFAULT_DOT_RADIUS = 6;
 
 var pageCount=0;
-var autoPlay=true;
-
 
 export default class PageViewIndicator extends Component {
 
     constructor(props) {
         super(props);
         pageCount = this.props.pageCount;
-        if(this.props.autoPlay)
-            autoPlay = this.props.autoPlay;
     }
     state = {
         selectedIndex: this.props.initialPage
     };
 
     componentDidMount() {
-        if(autoPlay){
+        if(this.props.autoPlay == true){
             this.timer = setInterval(this.changeSelected.bind(this), 4000);
         }
     }
@@ -71,12 +70,40 @@ export default class PageViewIndicator extends Component {
                     onPageSelected={this._onPageSelectedOnAndroid.bind(this)}
 
                 >
-                    {this.props.rendViewPage()}
+                    {this.props.renderPageView()}
                 </ViewPagerAndroid>
-
+                {this._renderDotsView()}
             </View>
 
         );
+    }
+
+    _renderDotsView() {
+        if(this.props.hasDots == true){
+            let dotsView = [];
+            for (let i = 0; i < this.props.pageCount; i++) {
+                let isSelect = i == this.state.selectedIndex;
+                dotsView.push(
+                    <View
+                        style={[styles.dot, isSelect ? styles.selectDot : null]}
+                        key={i}
+                    />
+                );
+            }
+
+            return (
+                <View
+                    {...this.props}
+                    style={styles.container}
+                >
+                    {dotsView}
+                </View>
+            );
+        }
+        else{
+
+        }
+
     }
 
     _onPageScrollOnAndroid(e) {
